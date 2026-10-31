@@ -1,138 +1,51 @@
 
-!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TikToker</title><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}.top{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;justify-content:center;gap:16px;padding:12px;background:linear-gradient(#000,transparent);color:#888;font-weight:700}.top .a{color:#fff;border-bottom:2px solid #fff}.feed{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory}.post{height:100vh;width:100vw;scroll-snap-align:start;position:relative;background:#111}.post .bg{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.r{position:absolute;right:10px;bottom:110px;z-index:5;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}.pp{width:48px;height:48px;border-radius:50%;border:2px solid #fff}.ic{width:48px;height:48px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px}.c{font-size:12px;font-weight:700}.i{position:absolute;left:12px;bottom:90px;right:80px;z-index:5}.btm{position:fixed;bottom:0;left:0;right:0;background:#000;display:flex;justify-content:space-around;padding:10px 0 14px;border-top:1px solid #222;z-index:100;color:#777;font-size:10px;text-align:center}.btm .a{color:#fff}.plus{width:36px;height:26px;background:#fff;color:#000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;box-shadow:-3px 0 #25F4EE,3px 0 #fe2c55}.page{position:fixed;inset:0;background:#000;z-index:110;display:none;overflow-y:auto}.page.show{display:block}.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.box{background:#1e1e1e;width:100%;max-width:360px;border-radius:16px;padding:20px}.box input{width:100%;background:#2a2a2a;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;margin-top:10px}.box button{width:100%;background:#fe2c55;border:none;color:#fff;padding:12px;border-radius:10px;font-weight:900;margin-top:12px}</style></head><body>
-<div class="top"><span class="a">For You</span><span>Following</span><span>Friends</span></div>
-<div class="feed" id="feed"></div>
-<div class="btm"><div class="a">⌂<br>Home</div><div>👥<br>Friends</div><div onclick="openUp()"><div class="plus">+</div></div><div>✉<br>Inbox</div><div onclick="openPro()">👤<br>Profile</div></div>
-<div class="page" id="proPage"><div style="padding:12px;display:flex;justify-content:space-between"><span onclick="closePro()">‹ Back</span><b>@tanveers840</b><span>...</span></div><div style="text-align:center;padding:20px"><img src="https://i.pravatar.cc/150?u=tanveer" style="width:90px;height:90px;border-radius:50%;border:2px solid #fff"><h3 style="margin-top:10px">Tanveer King 👑</h3><div style="display:flex;justify-content:center;gap:24px;margin-top:12px"><div><b>28</b><br><small>Following</small></div><div><b>927</b><br><small>Followers</small></div><div><b>4140</b><br><small>Likes</small></div></div><p style="margin-top:12px;color:#aaa;font-size:13px">My Own TikTok App LIVE! 🇵🇰 UK to PK</p></div></div>
-<div class="modal" id="first"><div class="box"><h3>اپنا اکاؤنٹ بناؤ</h3><input id="n" placeholder="نام - Tanveer King"><input id="u" placeholder="یوزر - @tanveer"><button onclick="makeAcc()">شروع کرو 🚀</button></div></div>
-<div class="modal" id="up"><div class="box"><h3>ویڈیو اپلوڈ</h3><input type="file" id="f" accept="video/*,image/*"><input id="cap" placeholder="کیپشن #fyp"><button onclick="doUp()">اپلوڈ کرو</button><button style="background:#333" onclick="closeM()">بند</button></div></div>
-<script>
-let me=JSON.parse(localStorage.getItem('tk_me')||'null');
-let posts=[{user:"🌸 Innocent Girl",cap:"REPOST #200k likes #1m views",music:"Halaen Lae Dill",img:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=720",likes:"21.2K",cc:931},{user:"🇦🇫 Sudais 704",cap:"@AYAZ YARBASH",music:"Original",img:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=720",likes:"48",cc:28},{user:"Tanveer 🔥 @tanveers840",cap:"My own App LIVE! 🇵🇰",music:"Original - Tanveer",video:"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",likes:"4140",cc:149}];
-let feed=document.getElementById('feed');
-function render(){feed.innerHTML='';posts.forEach((p,i)=>{let d=document.createElement('div');d.className='post';let m=p.video?`<video class="bg" loop muted playsinline src="${p.video}"></video>`:`<img class="bg" src="${p.img}">`;d.innerHTML=`${m}<div class="r"><img class="pp" src="https://i.pravatar.cc/100?u=${i}"><div><div class="ic">🤍</div><div class="c">${p.likes}</div></div><div><div class="ic">💬</div><div class="c">${p.cc}</div></div><div><div class="ic">↗️</div></div><div><div class="ic">🔖</div></div></div><div class="i"><b>${p.user}</b><br><small>${p.cap}</small><br><small>♫ ${p.music}</small></div>`;feed.appendChild(d)});let vids=document.querySelectorAll('video.bg');let ob=new IntersectionObserver(e=>{e.forEach(en=>{let v=en.target;if(en.isIntersecting)v.play().catch(()=>{});else v.pause()})},{threshold:0.6});vids.forEach(v=>ob.observe(v))}
-function openPro(){document.getElementById('proPage').classList.add('show')}function closePro(){document.getElementById('proPage').classList.remove('show')}function openUp(){if(!me){document.getElementById('first').classList.add('show');return}document.getElementById('up').classList.add('show')}function closeM(){document.querySelectorAll('.modal').forEach(x=>x.classList.remove('show'))}function makeAcc(){let nn=document.getElementById('n').value||'Tanveer King';let uu=document.getElementById('u').value||'@tanveers840';me={name:nn,user:uu};localStorage.setItem('tk_me',JSON.stringify(me));closeM();alert('اکاؤنٹ بن گیا! اب + سے ویڈیو ڈالو')}function doUp(){let file=document.getElementById('f').files[0];let c=document.getElementById('cap').value||'My video #fyp';if(!file){alert('پہلے فائل منتخب کرو');return}let url=URL.createObjectURL(file);let isV=file.type.startsWith('video');posts.unshift({user:me.name,cap:c,music:'Original',video:isV?url:null,img:!isV?url:null,likes:'0',cc:0});closeM();render()}
-if(!me)setTimeout(()=>{document.getElementById('first').classList.add('show')},700);
-render();
-</script></body></html>*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}
-.top{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;justify-content:center;gap:20px;padding:14px;background:linear-gradient(#000,transparent);color:#888;font-weight:700}
-.top .a{color:#fff;border-bottom:2px solid #fff}
-.feed{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none}
-.feed::-webkit-scrollbar{display:none}
-.post{height:100vh;width:100vw;scroll-snap-align:start;position:relative;background:#111}
-.post .bg{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.soundBtn{position:absolute;left:14px;top:50%;transform:translateY(-50%);z-index:6;background:rgba(0,0,0,.5);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
-.r{position:absolute;right:12px;bottom:110px;z-index:5;display:flex;flex-direction:column;gap:18px;align-items:center;text-align:center}
-.pp{width:52px;height:52px;border-radius:50%;border:2px solid #fff;object-fit:cover;background:#222}
-.ic{width:52px;height:52px;background:rgba(255,255,255,.18);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer}
-.ic.liked{background:rgba(254,44,85,.4);color:#fe2c55}
-.c{font-size:12px;font-weight:700;margin-top:4px}
-.i{position:absolute;left:14px;bottom:100px;right:90px;z-index:5;line-height:1.4}
-.btm{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:1px solid #222;display:flex;justify-content:space-around;padding:8px 0 14px;z-index:100;color:#777;font-size:10px;text-align:center}
-.btm .a{color:#fff}
-.plus{width:40px;height:28px;background:#fff;color:#000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;box-shadow:-4px 0 #25F4EE,4px 0 #fe2c55}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
-.modal.show{display:flex}
-.box{background:#1e1e1e;width:100%;max-width:360px;border-radius:18px;padding:22px}
-.box input{width:100%;background:#2a2a2a;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;margin-top:12px}
-.box button{width:100%;background:#fe2c55;border:none;color:#fff;padding:13px;border-radius:10px;font-weight:900;margin-top:14px}let me = JSON.parse(localStorage.getItem('tk_final_me')||'null');
-let posts = [
-{id:1,user:"🌸 Innocent Girl",cap:"REPOST-REQUEST 🔁 #200k likes #1m views",music:"Halaen Lae Dill",img:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=720",likes:"21.2K",cc:931},
-{id:2,user:"🇦🇫 Sudais 704",cap:"@AYAZ YARBASH @BACHA KING704",music:"Original Sound",img:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=720",likes:"48",cc:28},
-{id:3,user:"Tanveer King 👑 @tanveers840",cap:"My own TikToker App LIVE! 🇵🇰 UK to PK",music:"Original - Tanveer",video:"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",likes:"4140",cc:149}
-];
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TikToker - Tanveer King 👑</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#fff;font-family:system-ui;text-align:center}
+h1{margin-top:40px}
+video{width:92%;max-width:400px;border-radius:16px;margin-top:20px;background:#111}
+.btn{background:#fe2c55;color:#fff;border:none;padding:14px 28px;border-radius:12px;font-weight:900;margin-top:18px;font-size:16px}
+.feed{margin-top:20px}
+</style>
+</head>
+<body>
+<h1>✅ TikToker LIVE ہو گیا! 👑</h1>
+<p>Tanveer King کی App چل گئی</p>
 
-let extraPosts = JSON.parse(localStorage.getItem('tk_final_posts')||'[]');
-posts = [...extraPosts, ...posts];
+<div class="feed">
+<video controls autoplay muted loop playsinline src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
+<br>
+<button class="btn" onclick="document.getElementById('acc').style.display='block'">اکاؤنٹ بناؤ</button>
 
-const feed = document.getElementById('feed');
-
-function render(){
-feed.innerHTML='';
-posts.forEach((p,i)=>{
-let div=document.createElement('div');
-div.className='post';
-let media = p.video ? `<video class="bg" id="v-${i}" loop playsinline src="${p.video}"></video><div class="soundBtn" onclick="toggleSound(${i})">🔇</div>` : `<img class="bg" src="${p.img}">`;
-div.innerHTML=`
-${media}
-<div class="r">
-<img class="pp" src="https://i.pravatar.cc/100?u=${p.user+i}">
-<div><div class="ic" onclick="like(this)">🤍</div><div class="c">${p.likes}</div></div>
-<div><div class="ic" onclick="alert('${p.cc} Comments')">💬</div><div class="c">${p.cc}</div></div>
-<div><div class="ic" onclick="shareApp()">↗️</div><div class="c">Share</div></div>
+<div id="acc" style="display:none;background:#1e1e1e;margin:20px;padding:20px;border-radius:16px">
+<input id="n" placeholder="نام - Tanveer King" style="width:90%;padding:12px;border-radius:8px;border:1px solid #333;background:#2a2a2a;color:#fff"><br><br>
+<input id="u" placeholder="@tanveers840" style="width:90%;padding:12px;border-radius:8px;border:1px solid #333;background:#2a2a2a;color:#fff"><br><br>
+<button class="btn" onclick="alert('مبارک ہو! اکاؤنٹ بن گیا: '+document.getElementById('n').value)">شروع کرو 🚀</button>
 </div>
-<div class="i" onclick="togglePlay(${i})"><b>${p.user}</b><br><small>${p.cap}</small><br><small>♫ ${p.music}</small><br><small style="color:#888">ٹیپ کرو تو ویڈیو چلے گی</small></div>
-`;
-feed.appendChild(div);
+
+<br><br>
+<p>👇 نیچے سوائپ کرو، ہزاروں ویڈیو</p>
+<video controls muted loop style="width:92%;margin-top:12px;border-radius:16px" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"></video>
+<video controls muted loop style="width:92%;margin-top:12px;border-radius:16px" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"></video>
+</div>
+
+<script>
+// infinite feel
+window.addEventListener('scroll',()=>{
+if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 500){
+let v=document.createElement('video');
+v.controls=true;v.muted=true;v.loop=true;
+v.style.width='92%';v.style.marginTop='12px';v.style.borderRadius='16px';
+v.src='https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4';
+document.querySelector('.feed').appendChild(v);
+}
 });
-observeVideos();
-}
-
-function observeVideos(){
-let vids=document.querySelectorAll('video.bg');
-let ob=new IntersectionObserver(ents=>{
-ents.forEach(e=>{
-let v=e.target;
-if(e.isIntersecting){ v.play().catch(()=>{}); }
-else{ v.pause(); }
-});
-},{threshold:0.6});
-vids.forEach(v=>ob.observe(v));
-}
-
-function togglePlay(i){
-let v=document.getElementById('v-'+i);
-if(!v) return;
-if(v.paused){ v.play(); } else { v.pause(); }
-}
-
-function toggleSound(i){
-let v=document.getElementById('v-'+i);
-if(!v) return;
-v.muted = !v.muted;
-event.target.innerText = v.muted ? '🔇' : '🔊';
-}
-
-function like(el){
-el.classList.toggle('liked');
-el.innerText = el.classList.contains('liked') ? '❤️' : '🤍';
-if(navigator.vibrate) navigator.vibrate(50);
-}
-
-function showTab(type,el){
-document.querySelectorAll('.top span').forEach(s=>s.classList.remove('a'));
-el.classList.add('a');
-if(type!=='foryou') alert(type+' جلد آ رہا ہے!');
-}
-
-function goHome(){ feed.scrollTo(0,0); }
-function openProfilePage(){ alert('Profile: Tanveer King 👑\n28 Following | 927 Followers | 4140 Likes'); }
-function openUpload(){ if(!me){ document.getElementById('accModal').classList.add('show'); return; } document.getElementById('uploadModal').classList.add('show'); }
-function closeAll(){ document.querySelectorAll('.modal').forEach(m=>m.classList.remove('show')); }
-function createAccount(){
-let name=document.getElementById('userName').value||'Tanveer King';
-let handle=document.getElementById('userHandle').value||'@tanveers840';
-me={name,handle};
-localStorage.setItem('tk_final_me',JSON.stringify(me));
-closeAll();
-alert('اکاؤنٹ بن گیا! اب + سے ویڈیو اپلوڈ کرو');
-}
-function uploadVideo(){
-let file=document.getElementById('videoFile').files[0];
-let cap=document.getElementById('videoCap').value||'My new video #fyp #viral';
-let music=document.getElementById('videoMusic').value||'Original Sound';
-if(!file){ alert('پہلے ویڈیو منتخب کرو'); return; }
-let url=URL.createObjectURL(file);
-let isV=file.type.startsWith('video');
-let newPost={id:Date.now(),user:me.name+' '+me.handle,cap,music,video:isV?url:null,img:!isV?url:null,likes:'0',cc:0};
-extraPosts.unshift(newPost);
-localStorage.setItem('tk_final_posts',JSON.stringify(extraPosts));
-posts.unshift(newPost);
-closeAll();
-render();
-}
-function shareApp(){ if(navigator.share){ navigator.share({title:'TikToker',url:location.href}); } else { alert('لنک کاپی ہو گیا: '+location.href); } }
-
-if(!me){ setTimeout(()=>{ document.getElementById('accModal').classList.add('show'); },800); }
-render();
+</script>
+</body>
+</html>
