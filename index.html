@@ -2,56 +2,45 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TikToker - 100% TikTok Clone</title>
+<title>TikToker - World's No.1 Short Video App</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#000;color:#fff;padding-bottom:70px}
-.top{display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid #222;position:sticky;top:0;background:#000;z-index:9}
-.logo{font-weight:900;font-size:22px} .logo i{color:#fe2c55;font-style:normal}
-.tab{display:flex;gap:12px;font-size:14px;color:#777} .tab b{color:#fff;border-bottom:2px solid #fff}
-.hero{padding:12px 16px}
-.feed{border:1px solid #333;border-radius:16px;overflow:hidden;background:#0f0f0f;margin-top:10px}
-.row{display:flex;padding:10px 12px;border-top:1px solid #1e1e1e;align-items:center}
-.thumb{width:50px;height:70px;background:#222;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-right:10px}
-.info{flex:1} .info b{font-size:12px} .info p{font-size:10px;color:#888}
-.badge{font-size:9px;padding:2px 6px;border-radius:10px;display:inline-block;margin-top:3px}
-.org{border:1px solid #333;color:#888} .spon{background:#ffeb3b;color:#000;font-weight:800}
-.earn{background:linear-gradient(90deg,#25f4ee,#fe2c55);padding:10px;border-radius:10px;text-align:center;font-size:12px;font-weight:800;margin-top:10px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:1px solid #222;display:flex;justify-content:space-around;padding:6px 0 10px;z-index:20}
-.b-item{text-align:center;font-size:9px;color:#888;line-height:1.2}
-.b-item b{font-size:20px;display:block}
-.b-item.active{color:#fff}
-.plus{width:44px;height:28px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#000;font-size:22px;font-weight:900;position:relative}
-.plus:before{content:'';position:absolute;left:-4px;top:2px;width:100%;height:100%;background:#25f4ee;border-radius:8px;z-index:-1}
-.plus:after{content:'';position:absolute;right:-4px;top:2px;width:100%;height:100%;background:#fe2c55;border-radius:8px;z-index:-1}
-.ukpk{margin:10px 16px;background:#111;border:1px solid #222;padding:10px;border-radius:10px;text-align:center;font-size:12px}
-.box{background:#111;border:1px solid #222;border-radius:12px;padding:10px;margin:10px 16px;font-size:11px}
-.box li{list-style:none;line-height:1.6;color:#ccc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#fff;font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto;}
+.top{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;border-bottom:1px solid #222;position:sticky;top:0;background:#000;z-index:10}
+.logo-area{display:flex;align-items:center;gap:10px}
+.logo-area img{width:42px;height:42px;border-radius:10px;object-fit:cover;border:1.5px solid #333}
+.logo{font-weight:900;font-size:24px;letter-spacing:-0.5px}
+.logo span{color:#fe2c55}
+.getapp{background:#fe2c55;color:#fff;border:none;padding:8px 18px;border-radius:4px;font-weight:700}
+.hero{padding:40px 18px;text-align:center}
+.hero h1{font-size:38px;font-weight:900;line-height:1.1}
+.hero h1 b{color:#25f4ee}
+.hero p{color:#888;margin-top:12px;font-size:15px}
+.download{margin-top:22px;background:#fe2c55;color:#fff;border:none;padding:15px 32px;border-radius:30px;font-weight:800;font-size:16px;width:90%;max-width:320px}
+.feed{margin:15px;border:1px solid #222;border-radius:14px;overflow:hidden;background:#0a0a0a}
+.row{display:flex;padding:12px;gap:12px;align-items:center;border-bottom:1px solid #111}
+.thumb{width:56px;height:76px;background:#111;border-radius:8px;object-fit:cover;border:1px solid #222}
+.info{flex:1}
+.info b{font-size:13px}
+.info p{font-size:11px;color:#777;margin-top:2px}
+.live{background:#fe2c55;color:#fff;font-size:9px;padding:3px 8px;border-radius:10px;font-weight:800}
 </style>
 </head>
 <body>
-<div class="top"><div class="logo">Tik<i>Toker</i></div><div class="tab"><b>For You</b><span>Following</span><span>LIVE</span></div></div>
+
+<div class="top">
+  <div class="logo-area">
+    <img src="IMG-20261031-WA2934.jpg" alt="logo">
+    <div class="logo">Tik<span>Toker</span></div>
+  </div>
+  <button class="getapp">Get App</button>
+</div>
 
 <div class="hero">
+  <h1>World's No.1<br><b>Short Video App</b></h1>
+  <p>Like TikTok with UK 🇬🇧 to PK 🇵🇰 Video Call and Creator Fund 💰</p>
+  <button class="download">Download Now - Free</button>
+</div>
+
 <div class="feed">
-<div style="padding:8px 12px;font-size:10px;color:#555">FOR YOU FEED - 5 TABS CONCEPT</div>
-<div class="row"><div class="thumb">🎬</div><div class="info"><b>Video 1 @dance.king</b><p>Trending #fyp 1.2M Likes</p><span class="badge org">Organic</span></div></div>
-<div class="row"><div class="thumb">😂</div><div class="info"><b>Video 2 @funny.pk</b><p>UK ↔ PK Prank</p><span class="badge org">Organic</span></div></div>
-<div class="row"><div class="thumb">🎵</div><div class="info"><b>Video 3 @singer</b><p>Original Sound</p><span class="badge org">Organic</span></div></div>
-<div class="row" style="background:rgba(255,235,59,.07)"><div class="thumb" style="background:#ffeb3b;color:#000">🛒</div><div class="info"><b>Video 4 @daraz.pk [AD]</b><p>70% OFF Sale Shop Now</p><span class="badge spon">Sponsored Ad</span></div></div>
-</div>
-<div class="earn">💰 Earning Feature: Creator Fund 50/50 - Aadha Aapka Aadha Creator Ka</div>
-</div>
-
-<div class="ukpk">🇬🇧 UK ↔ 🇵🇰 PK Video Call Button - Aapka Special</div>
-<div class="box"><li>✓ TikTok ke saare features 100% - koi 19-20 nahi</li><li>✓ Duet, Stitch, Green Screen, Filters, Beauty</li><li>✓ Trim, Cut, Speed, Text, Stickers, Captions</li><li>✓ Live Gifts: Lion, Universe, Crown etc</li></div>
-
-<div class="bottom">
-<div class="b-item active"><b>⌂</b>Home</div>
-<div class="b-item"><b>⚲</b>Friends<br>Follower</div>
-<div class="b-item"><div class="plus">+</div></div>
-<div class="b-item"><b>✉</b>Inbox<br>Messenger</div>
-<div class="b-item"><b>👤</b>Profile<br>Account</div>
-</div>
-</body>
-</html>
+  <div class
